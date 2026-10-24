@@ -1,0 +1,35 @@
+adb_path: adb
+serial: ""
+adb_timeout_s: 20
+
+vision:
+  backend: vision_llm
+  api_base: http://localhost:11434/v1
+  model: qwen2.5vl:7b
+  key_env: VISION_API_KEY
+  timeout_s: 60
+
+game:
+  # Keep false while calibrating. Live mode refuses to tap until this is true.
+  calibrated: false
+  # These are example coordinates for a 1080x1920 screen, not universal values.
+  buttons:
+    fold: [300, 1710]
+    call_check: [730, 1710]
+    raise_open: [960, 1570]
+    # Optional final Bet/Raise confirmation button; null means not required.
+    raise_confirm: null
+    slider:
+      y: 1450
+      x_min: 250
+      x_max: 930
+  swipe_duration_ms: 450
+  raise_open_delay_s: 0.35
+  raise_confirm_delay_s: 0.20
+
+loop_delay_s: 1.5
+bad_state_pause_s: 30
+
+engine:
+  mc_iterations: 400
+  bluff_rate: 0.18
