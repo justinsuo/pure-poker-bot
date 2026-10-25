@@ -8,11 +8,13 @@ Use only where permitted; you accept all ToS, account, and financial risk.
 
 A local Python 3.10+ no-limit Texas Hold'em bot for Pure Poker on an Android emulator. It captures the screen with ADB, reads the table with an OpenAI-compatible vision model, decides with a local heuristic/Monte Carlo engine, and can tap calibrated emulator controls.
 
+**Using an iPhone instead?** See [README_IPHONE.md](README_IPHONE.md) for **iPhoneScreenAdvisor**, a separate capture-and-advice-only mode. It has no ADB and no taps: the human executes every action on the phone.
+
 **No AI assistant is needed to install or operate this repository.** The vision model is a required component of the bot itself. Every installation, calibration, testing, and troubleshooting step is included below.
 
 ## What is verified and what needs your hardware
 
-The repository includes 32 automated tests for the hand evaluator, decision engine, chip math, JSON recovery, ADB PNG handling, action limits, stale/duplicate-action prevention, calibration output, and a mocked capture → vision → decision → action pipeline. GitHub Actions runs these tests on Python 3.10 and 3.12. The release evaluator was also checked against all 2,598,960 possible five-card hands.
+The repository includes 52 automated tests for the hand evaluator, decision engine, chip math, JSON recovery, ADB PNG handling, action limits, stale/duplicate-action prevention, iPhone capture backends, hotkey fallback, overlay/speech fallback, and mocked end-to-end pipelines. GitHub Actions runs these tests on Python 3.10 and 3.12. The release evaluator was also checked against all 2,598,960 possible five-card hands.
 
 Your friend must still calibrate and dry-run on the actual emulator because button positions, screen resolution, Pure Poker's layout, and vision-model OCR accuracy vary. Offline tests cannot confirm what a real table looks like or where its buttons are.
 
@@ -368,12 +370,20 @@ adb.py                  ADB transport and binary-safe screenshots
 hand_eval.py            Exhaustive 7-card evaluator
 engine.py               Local strategy and CLI
 perception.py           Vision request, JSON recovery, validation, cache
-bot.py                  Main loop and action safeguards
+bot.py                  Android main loop and action safeguards
+capture.py              iPhone QuickTime, mirror-region, and USB capture
+advisor.py              iPhone capture → perception → engine → advice pipeline
+output.py               iPhone console, Tk overlay, and optional speech
+README_IPHONE.md        Complete iPhone setup and operation guide
 config.yaml             Local device/model/control configuration
-requirements.txt        Python dependencies
-tools/calibrate.py      Numbered screenshot grid
+requirements.txt        Core Python dependencies
+requirements-optional.txt Optional window, hotkey, and voice dependencies
+tools/calibrate.py      Android numbered screenshot grid
+tools/list_devices.py   iPhone camera/window discovery
+tools/calibrate_region.py iPhone visual mirror-region selector
 tools/doctor.py         Offline/online/live-readiness diagnostics
-tests/test_suite.py     Offline unit and mocked integration tests
+tests/test_suite.py     Android unit and mocked integration tests
+tests/test_iphone_advisor.py iPhone unit and mocked integration tests
 SETUP_WINDOWS.bat       Automatic Windows setup
 START_BOT.bat           Windows launcher; dry-run by default
 setup.sh                Unix setup

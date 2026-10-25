@@ -33,3 +33,21 @@ bad_state_pause_s: 30
 engine:
   mc_iterations: 400
   bluff_rate: 0.18
+
+iphone:
+  backend: mirror_window        # mac_quicktime | mirror_window | usb_screenshot
+  device_index: 0               # mac_quicktime only; from tools/list_devices.py
+  fourcc: ""                    # optional override, e.g. AVC1
+  window_title_contains: "ApowerMirror"  # mirror_window; empty when using a fixed region
+  region: null                  # [x, y, width, height]; overrides window auto-find
+  pmd3_command: "pymobiledevice3 developer dvt screenshot"
+  shot_path: "logs/_iphone_shot.png"
+  usb_timeout_s: 30
+  poll_seconds: 2.0
+  mode: hotkey                  # loop | hotkey; CLI flags override
+  hotkey: F9
+  crop: null                    # [x, y, width, height] inside the captured frame
+  output:
+    console: true
+    overlay: true
+    tts: false

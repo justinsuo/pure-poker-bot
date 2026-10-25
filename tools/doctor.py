@@ -38,7 +38,7 @@ class Report:
 
 def _dependencies(report: Report) -> bool:
     okay = True
-    for module in ("cv2", "numpy", "yaml", "requests"):
+    for module in ("cv2", "numpy", "yaml", "requests", "mss", "PIL"):
         try:
             imported = importlib.import_module(module)
             version = getattr(imported, "__version__", "installed")

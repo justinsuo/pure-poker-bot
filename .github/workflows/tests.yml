@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
       - name: Compile source
-        run: python -m py_compile adb.py hand_eval.py engine.py perception.py bot.py tools/calibrate.py tools/doctor.py
+        run: python -m py_compile adb.py hand_eval.py engine.py perception.py bot.py capture.py advisor.py output.py tools/calibrate.py tools/doctor.py tools/list_devices.py tools/calibrate_region.py
       - name: Run offline unit and integration tests
         run: python -m unittest discover -s tests -v
       - name: Run offline diagnostics

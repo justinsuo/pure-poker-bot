@@ -27,6 +27,10 @@ echo Installing dependencies...
 ".venv\Scripts\python.exe" -m pip install -r requirements.txt
 if errorlevel 1 goto error
 
+echo Installing optional iPhone window, hotkey, and voice support...
+".venv\Scripts\python.exe" -m pip install -r requirements-optional.txt
+if errorlevel 1 echo WARNING: Optional features failed; Enter fallback and fixed-region capture still work.
+
 echo Running offline test suite...
 ".venv\Scripts\python.exe" -m unittest discover -s tests -v
 if errorlevel 1 goto error
@@ -37,7 +41,7 @@ if errorlevel 1 goto error
 
 echo.
 echo === Setup complete ===
-echo Next: install/start ADB and Ollama, then follow README.md sections 3-6.
+echo Android: follow README.md. iPhone: follow README_IPHONE.md.
 echo Run ".venv\Scripts\python.exe tools\doctor.py" for connection checks.
 pause
 exit /b 0

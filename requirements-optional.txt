@@ -1,0 +1,4 @@
+# Optional iPhone advisor features: automatic window search, global hotkey, and speech.
+pygetwindow>=0.0.9,<1; sys_platform == "win32"
+keyboard>=0.13.5,<1
+pyttsx3>=2.90,<3
