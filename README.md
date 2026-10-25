@@ -1,5 +1,9 @@
 # Pure Poker Local Vision Bot
 
+[![Offline tests](https://github.com/justinsuo/pure-poker-bot/actions/workflows/tests.yml/badge.svg)](https://github.com/justinsuo/pure-poker-bot/actions/workflows/tests.yml)
+
+**Public repository:** <https://github.com/justinsuo/pure-poker-bot>
+
 Use only where permitted; you accept all ToS, account, and financial risk.
 
 A local Python 3.10+ no-limit Texas Hold'em bot for Pure Poker on an Android emulator. It captures the screen with ADB, reads the table with an OpenAI-compatible vision model, decides with a local heuristic/Monte Carlo engine, and can tap calibrated emulator controls.
@@ -8,7 +12,7 @@ A local Python 3.10+ no-limit Texas Hold'em bot for Pure Poker on an Android emu
 
 ## What is verified and what needs your hardware
 
-The repository includes automated tests for the hand evaluator, decision engine, chip math, JSON recovery, ADB PNG handling, action limits, stale/duplicate-action prevention, calibration output, and a mocked capture → vision → decision → action pipeline. GitHub Actions runs these tests on Python 3.10 and 3.12.
+The repository includes 32 automated tests for the hand evaluator, decision engine, chip math, JSON recovery, ADB PNG handling, action limits, stale/duplicate-action prevention, calibration output, and a mocked capture → vision → decision → action pipeline. GitHub Actions runs these tests on Python 3.10 and 3.12. The release evaluator was also checked against all 2,598,960 possible five-card hands.
 
 Your friend must still calibrate and dry-run on the actual emulator because button positions, screen resolution, Pure Poker's layout, and vision-model OCR accuracy vary. Offline tests cannot confirm what a real table looks like or where its buttons are.
 
@@ -18,7 +22,12 @@ Your friend must still calibrate and dry-run on the actual emulator because butt
 
 On the GitHub page, choose **Code → Download ZIP**. Extract the entire ZIP into a normal folder, then open that folder. Do not run the bot from inside the ZIP preview.
 
-If you already use Git, you can instead clone the HTTPS URL shown under **Code → Clone**.
+If you already use Git, clone it instead:
+
+```bash
+git clone https://github.com/justinsuo/pure-poker-bot.git
+cd pure-poker-bot
+```
 
 ### 2. Install the three external programs
 
